@@ -22,7 +22,7 @@ struct LineView: View {
         self.color = color
     }
     
-    init(color: Color, axisView: AxisView, axisComponents: [AxisComponent], values: [Double]) {
+    init(color: Color, axisView: GraphView, axisComponents: [AxisComponent], values: [Double]) {
         var points: [CGPoint] = []
         for i in 0 ..< axisComponents.count {
             if let point = axisView.findPoint(values[i], in: axisComponents[i]) {
