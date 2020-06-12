@@ -10,7 +10,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        GraphView(color: .gray,
+                  [
+                    AxisComponent(subtitle: "Mundiais", max: 3.5),
+                    AxisComponent(subtitle: "Libertadores", max: 3.5),
+                    AxisComponent(subtitle: "BR-B", max: 2.5)
+            ],
+                  [
+                    GraphElement(subtitle: "São Paulo", values: [3, 3, 0], color: .red),
+                    GraphElement(subtitle: "Palmeiras", values: [0, 1, 2], color: .green),
+                    GraphElement(subtitle: "Corithians", values: [2, 1, 1], color: .gray),
+        ])
     }
 }
 
