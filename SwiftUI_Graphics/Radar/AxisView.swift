@@ -12,6 +12,7 @@ struct AxisView: View {
     
     var color: Color
     var components: [AxisComponent]
+    var elements: [GraphElement]
     @State var center: CGPoint = .zero
     let axisRadius: Double = 150
     
@@ -19,15 +20,16 @@ struct AxisView: View {
         return (Double.pi * 2) / Double(components.count)
     }
     
-    init(color: Color = .random(), _ components: AxisComponent...) {
+    init(color: Color = .random(), _ components: [AxisComponent], _ elements: [GraphElement]) {
         self.components = components
         self.color = color
+        self.elements = elements
     }
     
     func findPoint(_ value: Double, in axis: AxisComponent) -> CGPoint? {
         if let index = components.firstIndex(of: axis) {
             
-            let radius = (value / axis.scale.upperBound - axis.scale.lowerBound) * axisRadius
+            let radius = min(value, axis.max) / max(axis.max, 0.1) * axisRadius
             let radians = (Double(index) + 1) * degreeInterval
             
             return center.findPointIn(radius: radius, radians: radians)
@@ -57,6 +59,11 @@ struct AxisView: View {
 
                     Text("\(self.components[index].subtitle)")
                         .modifier(SubtitleInGeoProxyModifier(geoProxy, radians: self.degreeInterval*Double(index+1)))
+                    
+                    ForEach(0 ..< self.elements.count) {
+                        (index) in
+                        LineView(color: self.elements[index].color, axisView: self, axisComponents: self.components, values: self.elements[index].values)
+                    }
                 }
             }
         }
@@ -78,10 +85,6 @@ struct SubtitleInGeoProxyModifier: ViewModifier {
 
 struct AxisView_Previews: PreviewProvider {
     static var previews: some View {
-        AxisView(
-            AxisComponent(subtitle: "A", scale: 0.0...10.0),
-            AxisComponent(subtitle: "B", scale: 15.0...17.0),
-            AxisComponent(subtitle: "C", scale: 0.5...60.7)
-        )
+        AxisView(color: .gray, [AxisComponent(subtitle: "A", max: 10), AxisComponent(subtitle: "B", max: 15), AxisComponent(subtitle: "C", max: 150)], [GraphElement(subtitle: "T1", values: [5, 7.5, 75], color: .red), GraphElement(subtitle: "T2", values: [5, 10, 10], color: .blue)])
     }
 }

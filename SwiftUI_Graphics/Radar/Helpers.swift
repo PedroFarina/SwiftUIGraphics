@@ -8,14 +8,15 @@
 
 import SwiftUI
 
-struct AxisComponent: Hashable {
+public struct AxisComponent: Hashable {
     var subtitle: String
-    var scale: ClosedRange<Double>
+    var max: Double
 }
 
 struct GraphElement {
     var subtitle: String
     var values: [Double]
+    var color: Color
 }
 
 extension CGPoint {
