@@ -47,7 +47,7 @@ struct AxisView: View {
         
         GeometryReader { geoProxy in
             
-            ForEach(0..<self.components.count) { (index) in
+            ForEach(0 ..< self.components.count) { (index) in
                 
                 ZStack {
                     
