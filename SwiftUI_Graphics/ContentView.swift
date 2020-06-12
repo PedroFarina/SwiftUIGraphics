@@ -14,7 +14,8 @@ struct ContentView: View {
                   [
                     AxisComponent(subtitle: "Mundiais", max: 3.5),
                     AxisComponent(subtitle: "Libertadores", max: 3.5),
-                    AxisComponent(subtitle: "BR-B", max: 2.5)
+                    AxisComponent(subtitle: "BR-B", max: 2.5),
+                    AxisComponent(subtitle: "Outro", max: 2.5)
             ],
                   [
                     GraphElement(subtitle: "São Paulo", values: [3, 3, 0], color: .red),
@@ -26,6 +27,10 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+            ContentView().previewLayout(.fixed(width: 568, height: 500))
+        }
+
     }
 }
