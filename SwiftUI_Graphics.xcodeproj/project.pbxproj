@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02E1AFA424929C9A0073DF1E /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1AFA324929C9A0073DF1E /* LineView.swift */; };
-		1EE7EA3C2493EC5C009432F2 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE7EA3B2493EC5C009432F2 /* GraphView.swift */; };
+		1EE7EA3C2493EC5C009432F2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE7EA3B2493EC5C009432F2 /* Helpers.swift */; };
 		25895DB8249172D1006C41A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25895DB7249172D1006C41A5 /* AppDelegate.swift */; };
 		25895DBA249172D1006C41A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25895DB9249172D1006C41A5 /* SceneDelegate.swift */; };
 		25895DBC249172D1006C41A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25895DBB249172D1006C41A5 /* ContentView.swift */; };
@@ -20,7 +20,7 @@
 
 /* Begin PBXFileReference section */
 		02E1AFA324929C9A0073DF1E /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
-		1EE7EA3B2493EC5C009432F2 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		1EE7EA3B2493EC5C009432F2 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		25895DB4249172D1006C41A5 /* SwiftUI_Graphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_Graphics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25895DB7249172D1006C41A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25895DB9249172D1006C41A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 			children = (
 				02E1AFA324929C9A0073DF1E /* LineView.swift */,
 				A7FD7F882492A53F00C26668 /* AxisView.swift */,
-				1EE7EA3B2493EC5C009432F2 /* GraphView.swift */,
+				1EE7EA3B2493EC5C009432F2 /* Helpers.swift */,
 			);
 			path = Radar;
 			sourceTree = "<group>";
@@ -168,7 +168,7 @@
 				25895DBA249172D1006C41A5 /* SceneDelegate.swift in Sources */,
 				25895DBC249172D1006C41A5 /* ContentView.swift in Sources */,
 				A7FD7F892492A53F00C26668 /* AxisView.swift in Sources */,
-				1EE7EA3C2493EC5C009432F2 /* GraphView.swift in Sources */,
+				1EE7EA3C2493EC5C009432F2 /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
