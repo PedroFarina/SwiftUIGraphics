@@ -25,7 +25,7 @@ struct LineView: View {
     init(color: Color, center: CGPoint, axisView: GraphView, axisComponents: [AxisComponent], values: [Double]) {
         var points: [CGPoint] = []
         for i in 0 ..< axisComponents.count {
-            if let point = axisView.findPoint(center: center, values[i], in: axisComponents[i]) {
+            if i < values.count, let point = axisView.findPoint(center: center, values[i], in: axisComponents[i]) {
                 points.append(point)
             }
         }
