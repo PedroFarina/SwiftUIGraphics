@@ -22,10 +22,10 @@ struct LineView: View {
         self.color = color
     }
     
-    init(color: Color, axisView: GraphView, axisComponents: [AxisComponent], values: [Double]) {
+    init(color: Color, center: CGPoint, axisView: GraphView, axisComponents: [AxisComponent], values: [Double]) {
         var points: [CGPoint] = []
         for i in 0 ..< axisComponents.count {
-            if let point = axisView.findPoint(values[i], in: axisComponents[i]) {
+            if let point = axisView.findPoint(center: center, values[i], in: axisComponents[i]) {
                 points.append(point)
             }
         }
@@ -34,15 +34,26 @@ struct LineView: View {
     }
 
     var body: some View {
-        Path { path in
-            var copy = points
-            let first = copy.removeFirst()
-            path.move(to: first)
-            for point in copy {
-                path.addLine(to: point)
-            }
-            path.addLine(to: first)
-        }.stroke(color, lineWidth: 2)
+        ZStack {
+            Path { path in
+                var copy = points
+                let first = copy.removeFirst()
+                path.move(to: first)
+                for point in copy {
+                    path.addLine(to: point)
+                }
+                path.addLine(to: first)
+            }.stroke(color, lineWidth: 2)
+            Path { path in
+                var copy = points
+                let first = copy.removeFirst()
+                path.move(to: first)
+                for point in copy {
+                    path.addLine(to: point)
+                }
+                path.addLine(to: first)
+            }.fill(color.opacity(0.1))
+        }
     }
 }
 
