@@ -34,15 +34,26 @@ struct LineView: View {
     }
 
     var body: some View {
-        Path { path in
-            var copy = points
-            let first = copy.removeFirst()
-            path.move(to: first)
-            for point in copy {
-                path.addLine(to: point)
-            }
-            path.addLine(to: first)
-        }.stroke(color, lineWidth: 2)
+        ZStack {
+            Path { path in
+                var copy = points
+                let first = copy.removeFirst()
+                path.move(to: first)
+                for point in copy {
+                    path.addLine(to: point)
+                }
+                path.addLine(to: first)
+            }.stroke(color, lineWidth: 2)
+            Path { path in
+                var copy = points
+                let first = copy.removeFirst()
+                path.move(to: first)
+                for point in copy {
+                    path.addLine(to: point)
+                }
+                path.addLine(to: first)
+            }.fill(color.opacity(0.1))
+        }
     }
 }
 
