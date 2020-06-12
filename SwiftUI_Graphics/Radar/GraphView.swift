@@ -13,7 +13,6 @@ struct GraphView: View {
     var color: Color
     var components: [AxisComponent]
     var elements: [GraphElement]
-    @State var center: CGPoint = .zero
     let axisRadius: Double = 150
     
     var degreeInterval: Double {
@@ -26,7 +25,7 @@ struct GraphView: View {
         self.elements = elements
     }
     
-    func findPoint(_ value: Double, in axis: AxisComponent) -> CGPoint? {
+    func findPoint(center: CGPoint, _ value: Double, in axis: AxisComponent) -> CGPoint? {
         if let index = components.firstIndex(of: axis) {
             
             let radius = min(value, axis.max) / max(axis.max, 0.1) * axisRadius
@@ -43,17 +42,16 @@ struct GraphView: View {
         ZStack {
             GeometryReader { geoProxy in
                 ForEach(0 ..< self.components.count) { (index) in
-                    
+
                     ZStack {
-                        
                         LineView(color: self.color) { () -> [CGPoint] in
-                            self.center = geoProxy.center()
+                            let center = geoProxy.center()
                             
                             let interval = self.degreeInterval * Double(index + 1)
                             
-                            let nextPoint = self.center.findPointIn(radius: self.axisRadius, radians: interval)
+                            let nextPoint =  center.findPointIn(radius: self.axisRadius, radians: interval)
                             
-                            return [self.center, nextPoint]
+                            return [center, nextPoint]
                         }
                         
                         Text("\(self.components[index].subtitle)")
@@ -61,18 +59,22 @@ struct GraphView: View {
                         
                         ForEach(0 ..< self.elements.count) {
                             (index) in
-                            LineView(color: self.elements[index].color, axisView: self, axisComponents: self.components, values: self.elements[index].values)
+                            LineView(color: self.elements[index].color, center: geoProxy.center(), axisView: self, axisComponents: self.components, values: self.elements[index].values)
                         }
                     }
                 }
             }
-            
-            VStack {
-                Spacer()
-                ForEach(self.elements, id: \.self) { (element) in
-                    Text(element.subtitle)
-                        .foregroundColor(element.color)
+
+
+            HStack {
+                VStack {
+                    Spacer()
+                    ForEach(self.elements, id: \.self) { (element) in
+                        Text(element.subtitle)
+                            .foregroundColor(element.color)
+                    }.padding(.leading)
                 }
+                Spacer()
             }
         }
     }
